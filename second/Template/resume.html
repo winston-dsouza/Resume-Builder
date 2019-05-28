@@ -1,0 +1,764 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Resume Now</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link href='https://fonts.googleapis.com/css?family=Martel Sans' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <link rel="stylesheet" href="{%static 'style.css' %}">
+</head>
+
+<body style="background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); ">
+    {% include 'header.html' %}
+
+    <div class="container bg-white p-0" style="margin-top:200px ;min-height:600px;">
+        <hr class="resume-progress ">
+        <div class="container p-5">
+            <div class="mt-2">
+                <h2 class="d-inline">{{resumeheader.0}} {{resumeheader.1}}</h2>
+                <ul class="list-unstyled">
+                    <li> {{resumeheader.2}}</li>
+                    <li>+91 {{resumeheader.3}}</li>
+                </ul>
+            </div>
+            <hr>
+            <div>
+
+            </div>
+            <!--Education Sction-->
+            <div class="mt-2">
+                <div class="row m-2">
+                    <div class=" text-info col-md-3 h4">EDUCATION</div>
+                    <div class="col-md-9 row">
+                        {% if educate %}
+                        <a href="{% url 'deleteEdu' %}" class="nav-link text-decoration-none"  style="position:absolute;left:720px;" class="d-inline " ><span>
+                            <i class="fas fa-trash-alt"></i></span></a>
+                        {% endif %}
+                        {% for i in educate%}
+                        <div class="col-md-12 p-2">
+                            <h6 class="font-weight-bold d-inline">{{i.0}} {% if i.1 %} ,{{i.1}}{% endif%}</h6>
+                            <div>Year of Completion :{{ i.2}}</div>
+                            <div>{% if i.6 %} {{i.6}} Board,{% endif%}{{i.3}}</div>
+                            <div class="d-inline">{{i.4}} :</div>
+                            <div class="d-inline">{{i.5}}</div>
+                            <br>
+                        </div>
+                        {% endfor %}
+                        <a href="http://" class="addMoreItemContainer" data-toggle="modal" data-dismiss="modal"
+                            data-target="#add-education-modal" id="education">+ Add Education</a>
+                    </div>
+
+                </div>
+                <hr />
+
+            </div>
+
+            <!--Education section ends-->
+            <!--Job section-->
+            <div class="mt-2">
+                <div class="row m-2">
+                    <div class=" text-info col-md-3 h4">JOBS</div>
+                    <div class="col-md-9 row">
+                        {% if jobs %}
+                        <a href="{% url 'deletejob' %}" class="nav-link text-decoration-none"  style="position:absolute;left:720px;" class="d-inline " ><span>
+                            <i class="fas fa-trash-alt"></i></span></a>
+                        {% endif %}
+                         {% for i in jobs%}
+                        <div class="col-md-12 p-2">
+                            <h6 class="font-weight-bold d-inline">{{i.0}}</h6>
+                            <div>{{i.1}} </div>
+                            <div>Location :{{i.2}}</div>
+                            <div class="d-inline">{{i.3}}</div> to
+                            <div class="d-inline">{{i.4}}</div>
+                            <div>Description :{{i.5}}</div>
+                        </div>
+                        {% endfor %}
+
+                        <a href="http://" class="addMoreItemContainer" data-toggle="modal" data-dismiss="modal"
+                            data-target="#job-modal" id="education">+ Add Job</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <!--Job section -->
+            <!--Internship section-->
+            <div class="mt-2">
+                <div class="row m-2">
+                    <div class=" text-info col-md-3 h4">Internship</div>
+                    <div class="col-md-9 row">
+                        {% if intern %}
+                        <a href="{% url 'deleteintern' %}" class="nav-link text-decoration-none"  style="position:absolute;left:720px;" class="d-inline " ><span>
+                            <i class="fas fa-trash-alt"></i></span></a>
+                        {% endif %}
+                         {% for i in intern%}
+                        <div class="col-md-12 p-2">
+                            <h6 class="font-weight-bold d-inline">{{i.0}}</h6>
+                            <div>{{i.1}} </div>
+                            <div>Location :{{i.2}}</div>
+                            <div class="d-inline">{{i.3}}</div> to
+                            <div class="d-inline">{{i.4}}</div>
+                            <div>Description :{{i.5}}</div>
+                        </div>
+                        {% endfor %}
+                        <a href="http://" class="addMoreItemContainer" data-toggle="modal" data-dismiss="modal"
+                            data-target="#intern-modal" id="education">+ Add Internship</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <!--Internship section -->
+            <!--Trainings section-->
+            <div class="mt-2">
+                <div class="row m-2">
+                    <div class=" text-info col-md-3 h4">Trainings</div>
+                    <div class="col-md-9 row">
+                        {% if train %}
+                        <a href="{% url 'deletetrain' %}" class="nav-link text-decoration-none"  style="position:absolute;left:720px;" class="d-inline " ><span>
+                            <i class="fas fa-trash-alt"></i></span></a>
+                        {% endif %}
+                        {% for i in train%}
+                        <div class="col-md-12 p-2">
+                            <h6 class="font-weight-bold d-inline">{{i.0}}</h6>
+                            <div>{{ i.1}} </div>
+                            <div class="d-inline">{{i.2}}</div>-
+                            <div class="d-inline"> {{i.3}} </div>
+                            <div>Description: {{i.4}}</div>
+                        </div>
+                        {% endfor %}
+                        <a href="http://" class="addMoreItemContainer" data-toggle="modal" data-dismiss="modal"
+                            data-target="#train-modal" id="education">+ Add Trainings</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <!--Trainings section ends-->
+            <!--Project Section-->
+            <div class="mt-2">
+                <div class="row m-2">
+                    <div class=" text-info col-md-3 h4">Projects</div>
+                    <div class="col-md-9 row">
+                        {% if project %}
+                        <a href="{% url 'deleteproject' %}" class="nav-link text-decoration-none"  style="position:absolute;left:720px;" class="d-inline " ><span>
+                            <i class="fas fa-trash-alt"></i></span></a>
+                        {% endif %}
+                        {% for i in project%}
+                        <div class="col-md-12 p-2">
+                            <h6 class="font-weight-bold d-inline">{{i.0}}</h6>
+                            <br>
+                            <div class="d-inline"> {{ i.1}} </div>-
+                            <div class="d-inline">{{i.2}}</div>
+                            <div><a href="{{i.3}}" target="_blank">{{i.3}}</a>
+                            </div>
+                            <div>Description :{{i.4}}</div>
+                        </div>
+                        {% endfor %}
+
+                        <a href="http://" class="addMoreItemContainer" data-toggle="modal" data-dismiss="modal"
+                            data-target="#pro-modal" id="education">+ Add Project</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <!--Project Section ends-->
+            <!--Skills Section-->
+            <div class="mt-2">
+                <div class="row m-2">
+                    <div class=" text-info col-md-3 h4">Skills</div>
+                    <div class="col-md-9 row">
+                        <div class="col-md-12  row">
+                            {% if skill %}
+                                <a href="{% url 'deleteskill' %}" class="nav-link text-decoration-none"  style="position:absolute;left:720px;" class="d-inline " ><span>
+                                <i class="fas fa-trash-alt"></i></span></a>
+                            {% endif %}
+                            {% for i in skill%}
+                            <div class="d-inline col-md-6 p-2"><li>{{i.0}}</li></div>
+                            {% endfor %}
+
+                        </div>
+
+                        <a href="http://" class="addMoreItemContainer" data-toggle="modal" data-dismiss="modal"
+                            data-target="#skill-modal" id="education">+ Add Trainings</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <!--Skills Sction Ends-->
+            <!--additional section-->
+            <div class="mt-2">
+                <div class="row m-2">
+                    <div class=" text-info col-md-3 h4">Additional Details</div>
+                    <div class="col-md-9 row">
+                        <div class="col-md-11">
+                            {% if add %}
+                                <a href="{% url 'deleteadd' %}" class="nav-link text-decoration-none"  style="position:absolute;left:700px;" class="d-inline " ><span>
+                                <i class="fas fa-trash-alt"></i></span></a>
+                            {% endif %}
+                            {% for i in add %}
+                            <div class="p-2"><li>{{i.0}}</li></div>
+                            {% endfor %}
+                        </div>
+
+                        <a href="http://" class="addMoreItemContainer" data-toggle="modal" data-dismiss="modal"
+                            data-target="#add-modal" id="education">+ Additional Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--additional Section ends-->
+
+        </div>
+        <!--Education Section-->
+        <!--modals-->
+        <!-- Education Modal-->
+        <div class="modal fade" id="add-education-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h4 class="modal-title d-inline">Education :</h4>
+                        <button type="button" class="close d-inline" data-dismiss="modal">&times;</button>
+                        <div class="row m-2">
+                            <div class="row ">
+                                <div class="col-md-12"><button type="button" class="btn btn-secondary btn-lg btn-block"
+                                        data-toggle="modal" data-target="#school-modal" data-dismiss="modal"> X
+                                        (Secondary)</button></div>
+                                <div class="col-md-12 mt-1"><button type="button"
+                                        class="btn btn-secondary btn-lg btn-block" data-toggle="modal"
+                                        data-target="#puc-modal" data-dismiss="modal">XII (Senior Secondary
+                                        or Equivalent)</button></div>
+                                <div class="col-md-12 mt-1"><button type="button"
+                                        class="btn btn-secondary btn-lg btn-block" data-toggle="modal"
+                                        data-target="#grad-modal" data-dismiss="modal">Graduation/ Diploma
+                                        /Post Graduation/ Phd</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Education Modal Ends-->
+        <!--Education Graduation Modal-->
+        <div class="modal" tabindex="-1" id="grad-modal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Education Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'education' %}" method="post">
+                             {%csrf_token%}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>College Name :</label>
+                                    <input type="text" class="form-control" id="collegeName"
+                                    name="school" placeholder="St. Joseph Engineering collge" required>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Start Date:</label>
+                                            <input type="text" name="sdate" date="datepicker" class="form-control" required />
+                                        </div>
+                                        <div class="col">
+                                            <label>End Date</label>
+                                            <input type="text" name="edate" date="datepicker" class="form-control" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Degree:</label>
+                                            <input type="text" class="form-control" name="degree" placeholder="eg:B.E" required />
+                                        </div>
+                                        <div class="col">
+                                            <label>Stream:</label>
+                                            <input type="text" class="form-control" name="stream" placeholder="eg:Computer Science"
+                                                required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Performance Scale:</label>
+                                            <select class="form-control" name="scale" placeholder="CGPA/PERCENTAGE" required>
+                                                <option>CGPA</option>
+                                                <option>Percentage</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <label>Performance :</label>
+                                            <input type="text" class="form-control" name="perf" placeholder="70% / 7.75" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary my-1">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Graduation Modal Ends-->
+        <!--Puc Modal-->
+        <div class="modal" tabindex="-1" id="puc-modal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title">XII (Senior Secondary or Equivalent) details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'education' %}" method="post">
+                            {%csrf_token%}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Year Of Completion*:</label>
+                                    <input type="text" name="edate" date="datepicker" class="form-control" required />
+                                    <input type="hidden" name="degree" value="XII (Senior Secondary)">
+                                </div>
+                                <div class="form-group">
+                                    <label>Board*:</label>
+                                    <input type="text" name="board" class="form-control" id="collegeName"
+                                        placeholder="State/CBSE/ICSE" required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Performance Scale *:</label>
+                                            <select class="form-control" name="scale" placeholder="CGPA/PERCENTAGE" required>
+                                                <option>CGPA</option>
+                                                <option>Percentage</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <label>Performance*:</label>
+                                            <input type="text" class="form-control" name="perf" placeholder="70% / 7.75" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Stream*:</label>
+                                    <select type="text" name="stream" date="datepicker" class="form-control" required>
+                                        <option>Science</option>
+                                        <option>Commerce</option>
+                                        <option>Arts</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>School*:</label>
+                                    <input type="text" name="school" class="form-control" id="collegeName"
+                                        placeholder="St. Joseph School" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary my-1">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--School Modal Ends-->
+        <div class="modal " tabindex="-1" id="school-modal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title">X (Secondary) details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'education' %}" method="post">
+                            {%csrf_token%}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Year Of Completion*:</label>
+                                    <input type="text" name="edate" date="datepicker" class="form-control" required />
+                                    <input type="hidden" name="degree" value="X (Secondary)">
+                                </div>
+                                <div class="form-group">
+                                    <label>Board*:</label>
+                                    <input type="text" name="board" class="form-control" id=""
+                                        placeholder="State/CBSE/ICSE" required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Performance Scale *:</label>
+                                            <select class="form-control" name="scale" placeholder="CGPA/PERCENTAGE" required>
+                                                <option>CGPA</option>
+                                                <option>Percentage</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <label>Performance*:</label>
+                                            <input type="text" name="perf" class="form-control" placeholder="70% / 7.75" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>School*:</label>
+                                    <input type="text" class="form-control" name="school" id="r"
+                                        placeholder="St. Joseph School" required>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary my-1">Submit</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Job Modal-->
+        <div class="modal fade" tabindex="-1" id="job-modal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title">Job details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'jobs' %}" method="post">
+                            {%csrf_token%}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Profile*:</label>
+                                    <input type="text" class="form-control" name="profile" id="collegeName"
+                                        placeholder="eg :Data Scientist" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>organization*:</label>
+                                    <input type="text" class="form-control" name="organization" id="collegeName" placeholder="IBM" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Location*:</label>
+                                    <input type="text" class="form-control" name="location" id="collegeName" placeholder="Location"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Start Date:</label>
+                                            <input type="text" date1="datepicker" name="sdate" class="form-control" required />
+                                        </div>
+                                        <div class="col">
+                                            <label>End Date</label>
+                                            <input type="text" date1="datepicker" name="edate" class="form-control" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" type="text" id="exampleFormControlTextarea1" rows="3"
+                                        placeholder="short description max 250 character" id="sessionNo"
+                                        name="description" onkeypress="return isNumberKey(event)"
+                                        maxlength="250"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary my-1">Submit</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Job model Ends-->
+        <!-- Internship Model Starts-->
+        <div class="modal fade" tabindex="-1" id="intern-modal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title">Internship Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'internship' %}" method="post">
+                          {%csrf_token%}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Profile*:</label>
+                                    <input type="text" class="form-control" name="profile" id="collegeName"
+                                        placeholder="eg :Data Scientist" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>organization*:</label>
+                                    <input type="text" class="form-control" name="organization" id="collegeName" placeholder="IBM" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Location*:</label>
+                                    <input type="text" class="form-control" name="location" id="collegeName" placeholder="Location"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Start Date:</label>
+                                            <input type="text" date1="datepicker" name="sdate" class="form-control" required />
+                                        </div>
+                                        <div class="col">
+                                            <label>End Date</label>
+                                            <input type="text" date1="datepicker" name="edate" class="form-control" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" type="text" id="exampleFormControlTextarea1" rows="3"
+                                        placeholder="short description max 250 character" id="sessionNo"
+                                        name="description" onkeypress="return isNumberKey(event)"
+                                        maxlength="250"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary my-1">Submit</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Internship Model Ends-->
+        <!--Training model-->
+        <div class="modal fade" tabindex="-1" id="train-modal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title">Training Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'training' %}" method="post">
+                            {%csrf_token%}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Training Program*:</label>
+                                    <input type="text" class="form-control" name="program" id="collegeName"
+                                        placeholder="eg :Data Scientist" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>organization*:</label>
+                                    <input type="text" class="form-control" name="organization" id="collegeName" placeholder="IBM" required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Start Date:</label>
+                                            <input type="text" date1="datepicker" name="sdate" class="form-control" required />
+                                        </div>
+                                        <div class="col">
+                                            <label>End Date</label>
+                                            <input type="text" date1="datepicker"  name="edate" class="form-control" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" type="text" id="exampleFormControlTextarea1" rows="3"
+                                        placeholder="short description max 250 character" id="sessionNo"
+                                        name="description" onkeypress="return isNumberKey(event)"
+                                        maxlength="250"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary my-1">Submit</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Training model ends-->
+        <!--Projects Model-->
+        <div class="modal fade" tabindex="-1" id="pro-modal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title">Project Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'project' %}" method="post">
+                        {%csrf_token%}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Project Name*:</label>
+                                    <input type="text" class="form-control" name="pname" id="collegeName" placeholder="" required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Start Date:</label>
+                                            <input type="text" date1="datepicker" name="sdate" class="form-control" required />
+                                        </div>
+                                        <div class="col">
+                                            <label>End Date</label>
+                                            <input type="text" date1="datepicker" name="edate" class="form-control" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Project Link:</label>
+                                    <input type="text" name="link" class="form-control" id="collegeName"
+                                        placeholder="eg:http://github.com/project" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" type="text" id="exampleFormControlTextarea1" rows="3"
+                                        placeholder="short description max 250 character" id="sessionNo"
+                                        name="description" onkeypress="return isNumberKey(event)"
+                                        maxlength="250"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary my-1">Submit</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Projects model ends-->
+        <!--skills section-->
+        <div class="modal fade" tabindex="-1" id="skill-modal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title">Add Skills</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'skill' %}" method="post">
+                            {%csrf_token%}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="text" name="skill" class="form-control" id="collegeName"
+                                        placeholder="Eg :Adobe Photoshop" required>
+                                </div>
+
+
+                            </div>
+                            <button type="submit" class="btn btn-primary my-1">Submit</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Skills section ends-->
+        <!--additional Details modal-->
+        <div class="modal fade" tabindex="-1" id="add-modal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title">Additional Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'additional' %}" method="post">
+                        {%csrf_token%}
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" type="text" id="exampleFormControlTextarea1" rows="3"
+                                        placeholder="short description max 250 character" id="sessionNo"
+                                        name="description" onkeypress="return isNumberKey(event)"
+                                        maxlength="250"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary my-1">Submit</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--additional details ends-->
+        <!--modals-->
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer class="footer">
+        <div class="container text-center"><span class="text-muted"><b>Copyright&copy;Resume Now | All Rights Reserved |
+                    Contact Us: +91 90000 00000</b></span></div>
+    </footer>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
+
+<script>
+    var typed = new Typed('#typed', {
+        stringsElement: '#typed-strings',
+        smartBackspace: true,// Default value
+        typeSpeed: 25,
+        backSpeed: 20,
+        loop: true
+    });
+    $('#date').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+</script>
+<script>
+    $(function () {
+        $('input[date="datepicker"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+
+            locale: {
+                format: 'YYYY-MM-DD'
+            },
+
+
+        });
+    });
+    $(function () {
+        $('input[date1="datepicker"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+
+            locale: {
+                format: 'MMMM DD,YYYY'
+            },
+
+
+        });
+    });
+    $(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+});
+
+
+</script>
+
+</html>

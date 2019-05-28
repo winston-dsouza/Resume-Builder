@@ -1,0 +1,92 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Resume Now</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link href='https://fonts.googleapis.com/css?family=Martel Sans' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{%static 'style.css' %}">
+</head>
+
+<body>
+        {%  include 'header.html' %}
+
+    <div id="content">
+        <div id="bg" class=" ">
+            <div class="container" style="padding-top:150px">
+                <div class="mx-auto p-5" id="banner_content" style="border-radius: 0.5rem;">
+                    <div style="text-align: center" class="h1 text-dark  ">
+                        <div id="typed-strings">
+                            <h1>" It's So much <strong>Easier </strong> to create resume" ^2000</h1>
+                            <h1>" It's So much <strong>Flexible</strong> to create resume"^2000</h1>
+                        </div>
+                        <span id="typed"></span>
+                    </div>
+                    <br />
+                    {% if not condition%}
+                    <a href="#signup" class="font-weight-bolder btn btn btn-outline-info btn-lg shadow-lg btn-grad"
+                        data-toggle="modal">Create Now</a>
+                    {% else %}
+                    <a href="{% url 'resume' %}" class="font-weight-bolder btn btn btn-outline-info btn-lg shadow-lg btn-grad">Create Now</a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="text-center h4 mt-5">*Grab employers’ attention with an easy to create, targeted resume!*</div>
+    <div class="container mt-5 pb-5" id="features">
+        <div class="row  justify-content-around">
+            <div class="col-md-3 shadow-lg rounded-lg bg-light">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Step-by-Step Guidance</h5>
+                    <p class="card-text">We’ll show you how to use our resume maker to build a stand-out resume section
+                        by section with professional tips and advice.</p>
+
+                </div>
+            </div>
+            <div class="col-md-3 shadow-lg rounded-lg bg-light">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Auto Fill</h5>
+                    <p class="card-text">Make resume writing simple with 1000s of job-specific bullet points created by
+                        our
+                        experts.</p>
+                </div>
+            </div>
+            <div class="col-md-3 shadow-lg rounded-lg bg-light">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Download, Print, and Send!</h5>
+                    <p class="card-text">Edit, format, download, and print your resume from one place</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <footer class="footer">
+        <div class="container text-center"><span class="text-muted"><b>Copyright&copy;Resume Now | All Rights Reserved |
+                    Contact Us: +91 90000 00000</b></span></div>
+    </footer>
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+<script>
+    var typed = new Typed('#typed', {
+        stringsElement: '#typed-strings',
+        smartBackspace: true,// Default value
+        typeSpeed: 25,
+        backSpeed: 20,
+        loop: true
+    });
+</script>
+
+</html>
